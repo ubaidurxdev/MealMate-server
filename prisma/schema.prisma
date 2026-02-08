@@ -51,6 +51,16 @@ model Order {
   updatedAt     DateTime    @updatedAt
 }
 
+model Review {
+  id String @id @default(uuid())
+  userId String
+  mealId String
+  orderId String
+  comment String
+  rating Int
+  createdAt DateTime @default(now())
+}
+
 enum OrderStatus {
   PREPARING
   READY
