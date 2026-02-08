@@ -19,6 +19,14 @@ model ProviderProfile {
   updatedAt   DateTime                @updatedAt
 }
 
+model Category {
+  id String @id @default(uuid())
+  name String
+  slug String
+  image String
+  createdAt DateTime @default(now())
+}
+
 enum ProviderRestaurantStats {
   OPEN
   CLOSED
