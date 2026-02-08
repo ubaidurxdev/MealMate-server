@@ -20,11 +20,24 @@ model ProviderProfile {
 }
 
 model Category {
-  id String @id @default(uuid())
-  name String
-  slug String
-  image String
+  id        String   @id @default(uuid())
+  name      String
+  slug      String
+  image     String
   createdAt DateTime @default(now())
+}
+
+model Meal {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  price       Float
+  image       String
+  isAvailable Boolean  @default(true)
+  ratingAvg   Float    @default(0)
+  ratingCount Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 enum ProviderRestaurantStats {
