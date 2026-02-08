@@ -52,12 +52,29 @@ model Order {
 }
 
 model Review {
-  id String @id @default(uuid())
-  userId String
-  mealId String
-  orderId String
-  comment String
-  rating Int
+  id        String   @id @default(uuid())
+  userId    String
+  mealId    String
+  orderId   String
+  comment   String
+  rating    Int
+  createdAt DateTime @default(now())
+}
+
+model Cart {
+  id        String   @id @default(uuid())
+  userId    String
+  updatedAt DateTime @updatedAt
+}
+
+model Address {
+  id        String   @id @default(uuid())
+  userId    String
+  label     String
+  street    String
+  city      String
+  area      String
+  phone     String
   createdAt DateTime @default(now())
 }
 
