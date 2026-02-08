@@ -59,9 +59,9 @@ model Order {
 model OrderItem {
   id       String @id @default(uuid())
   mealId   String
-  meal     Meal   @relation(fields: [mealId], references: [id])
+  meal     Meal   @relation(fields: [mealId], references: [id], onDelete: Cascade)
   orderId  String
-  order    Order  @relation(fields: [orderId], references: [id])
+  order    Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
   price    Float
   quantity Int
 }
@@ -70,9 +70,9 @@ model Review {
   id        String   @id @default(uuid())
   userId    String
   mealId    String
-  meal      Meal     @relation(fields: [mealId], references: [id])
+  meal      Meal     @relation(fields: [mealId], references: [id], onDelete: Cascade)
   orderId   String
-  order     Order    @relation(fields: [orderId], references: [id])
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   comment   String
   rating    Int
   createdAt DateTime @default(now())
@@ -88,9 +88,9 @@ model Cart {
 model CartItem {
   id       String @id @default(uuid())
   cartId   String
-  cart     Cart   @relation(fields: [cartId], references: [id])
+  cart     Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
   mealId   String
-  meal     Meal   @relation(fields: [mealId], references: [id])
+  meal     Meal   @relation(fields: [mealId], references: [id], onDelete: Cascade)
   quantity Int
 }
 
