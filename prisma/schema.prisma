@@ -51,6 +51,14 @@ model Order {
   updatedAt     DateTime    @updatedAt
 }
 
+
+model OrderItem {
+  id String @id @default(uuid())
+  mealId String
+  orderId String
+  price Float
+  quantity Int
+}
 model Review {
   id        String   @id @default(uuid())
   userId    String
@@ -67,13 +75,20 @@ model Cart {
   updatedAt DateTime @updatedAt
 }
 
+model CartItem {
+  id String @id @default(uuid())
+  cartId String
+  mealId String
+  quantity Int
+}
+
 model Address {
   id        String   @id @default(uuid())
   userId    String
   label     String
   street    String
   city      String
-  area      String
+  area      String?
   phone     String
   createdAt DateTime @default(now())
 }
