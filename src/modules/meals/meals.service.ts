@@ -1,7 +1,13 @@
-import { prisma } from "../../lib/prisma"
+import { prisma } from "../../lib/prisma";
+import { mealInterface } from "../../types/meal.types";
 
-const createMeals = async(data : Record<string,any>)=>{
-    await prisma.meal.create({
-        data 
-    })
+const createMeals = async (data: mealInterface) => {
+  return await prisma.meal.create({
+    data,
+  });
+};
+
+
+export const mealsService = {
+    createMeals
 }
