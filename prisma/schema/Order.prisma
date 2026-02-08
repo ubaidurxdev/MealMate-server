@@ -1,0 +1,18 @@
+model Order {
+    id            String      @id @default(uuid())
+    userId        String
+    status        OrderStatus @default(PREPARING)
+    totalAmount   Float
+    paymentMethod String      @default("COD")
+    deliveryNote  String?
+    createdAt     DateTime    @default(now())
+    updatedAt     DateTime    @updatedAt
+    orderItems    OrderItem[]
+    reviews       Review[]
+}
+
+enum OrderStatus {
+    PREPARING
+    READY
+    DELIVERED
+}

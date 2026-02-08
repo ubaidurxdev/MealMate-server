@@ -1,0 +1,16 @@
+model ProviderProfile {
+    id          String                  @id @default(uuid())
+    userId      String
+    restaurant  String
+    description String?
+    logoUrl     String?
+    address     String
+    isOpen      ProviderRestaurantStats @default(OPEN)
+    createAt    DateTime                @default(now())
+    updatedAt   DateTime                @updatedAt
+}
+
+enum ProviderRestaurantStats {
+    OPEN
+    CLOSED
+}

@@ -1,0 +1,10 @@
+model Address {
+    id        String   @id @default(uuid())
+    userId    String
+    label     String
+    street    String
+    city      String
+    area      String?
+    phone     String
+    createdAt DateTime @default(now())
+}
