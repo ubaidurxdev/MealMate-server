@@ -1,6 +1,7 @@
 model Cart {
     id        String     @id @default(uuid())
     userId    String
+    user      User       @relation(fields: [userId], references: [id])
     updatedAt DateTime   @updatedAt
     cartItems CartItem[]
 }

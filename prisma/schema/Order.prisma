@@ -1,6 +1,7 @@
 model Order {
     id            String      @id @default(uuid())
     userId        String
+    user          User        @relation(fields: [userId], references: [id])
     status        OrderStatus @default(PREPARING)
     totalAmount   Float
     paymentMethod String      @default("COD")

@@ -1,6 +1,7 @@
 model Review {
     id        String   @id @default(uuid())
     userId    String
+    user      User     @relation(fields: [userId], references: [id])
     mealId    String
     meal      Meal     @relation(fields: [mealId], references: [id], onDelete: Cascade)
     orderId   String
