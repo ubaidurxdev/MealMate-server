@@ -13,6 +13,7 @@ model User {
   order           Order[]
   providerProfile ProviderProfile[]
   review          Review[]
+  role            String  @default("CUSTOMER")
 
   @@unique([email])
   @@map("user")
