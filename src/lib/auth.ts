@@ -1,8 +1,7 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "./prisma";
-import nodemailer from "nodemailer"
-
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -33,9 +32,9 @@ export const auth = betterAuth({
       },
     },
   },
-    emailVerification: {
+  emailVerification: {
     sendOnSignUp: true,
-    autoSignInAfterVerification : true,
+    autoSignInAfterVerification: true,
     sendVerificationEmail: async ({ user, url, token }) => {
       try {
         const verificationUrl = `${process.env.APP_URL}/verify-email?token=${token}`;
@@ -108,6 +107,14 @@ If you did not create an account, you can safely ignore this email.
         console.log(error);
         throw error;
       }
+    },
+  },
+  socialProviders: {
+    google: {
+      prompt: "select_account consent",
+      accessType: "offline",
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
   },
 });
