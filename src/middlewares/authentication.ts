@@ -41,9 +41,17 @@ export const authentication = (...roles: UserRole[]) => {
         id: session.user.id,
         name: session.user.name,
         email: session.user.email,
-        role : session.user.role as string,
+        role: session.user.role as string,
         emailVerified: session.user.emailVerified,
       };
+      if (roles.length && !roles.includes(req.user.role as UserRole)) {
+        return res.status(403).json({
+          success: false,
+          message:
+            "Forbidden! You don't have permission to access this resources!",
+        });
+      }
+      next()
     } catch (error: any) {
       next(error);
     }
