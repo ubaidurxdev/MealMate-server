@@ -3,7 +3,6 @@ import { mealsService } from "./meals.service";
 
 const createMeals = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log(req.user)
     const result = await mealsService.createMeals(req.body);
     res.status(201).json({
       success: true,
@@ -15,6 +14,21 @@ const createMeals = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const updateMeals = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    const result = await mealsService.updateMeals(id as string, req.body);
+    res.status(200).json({
+      success: true,
+      message: "Meal updated successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const mealsController = {
   createMeals,
+  updateMeals
 };

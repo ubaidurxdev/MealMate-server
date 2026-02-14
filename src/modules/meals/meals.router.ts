@@ -4,6 +4,6 @@ import { authentication, UserRole } from "../../middlewares/authentication";
 
 const router = Router();
 
-router.post("/meals",authentication(UserRole.Customer), mealsController.createMeals)
-
+router.post("/meals",authentication(UserRole.Provider), mealsController.createMeals)
+router.patch("/meals/:id",authentication(UserRole.Provider),mealsController.updateMeals)
 export const mealsRouter: Router = router;
