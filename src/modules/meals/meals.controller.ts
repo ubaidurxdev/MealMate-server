@@ -3,6 +3,7 @@ import { mealsService } from "./meals.service";
 
 const createMeals = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    console.log(req.user)
     const result = await mealsService.createMeals(req.body);
     res.status(201).json({
       success: true,
