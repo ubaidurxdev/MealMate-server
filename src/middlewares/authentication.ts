@@ -4,6 +4,21 @@ export enum UserRole {
   User = "USER",
   Admin = "ADMIN",
 }
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: {
+        id: string;
+        name: string;
+        email: string;
+        role: string;
+        emailVerified: boolean;
+      };
+    }
+  }
+}
+
 export const authentication = (...roles: UserRole[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -16,6 +31,19 @@ export const authentication = (...roles: UserRole[]) => {
           message: "You are not authorized",
         });
       }
+      if (!session.user.emailVerified) {
+        return res.status(403).json({
+          success: false,
+          message: "Verified Email required",
+        });
+      }
+      req.user = {
+        id: session.user.id,
+        name: session.user.name,
+        email: session.user.email,
+        role : session.user.role as string,
+        emailVerified: session.user.emailVerified,
+      };
     } catch (error: any) {
       next(error);
     }
