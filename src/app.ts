@@ -7,6 +7,7 @@ import cors from "cors";
 import { ordersRouter } from "./modules/orders/orders.router";
 import { adminRouter } from "./modules/admin/admin.router";
 import { providerRouter } from "./modules/meal&providers/providers.router";
+import { usersRouter } from "./modules/users/users.router";
 const app: Application = express();
 
 app.use(
@@ -25,5 +26,6 @@ app.use("/api/provider", mealsRouter);
 app.use("/api/orders", ordersRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api", providerRouter);
+app.use("/api/users", usersRouter);
 app.use(errorHandler);
 export default app;
