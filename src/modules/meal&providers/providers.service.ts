@@ -26,9 +26,22 @@ const createProviders = async (id: string, data: providerDTO) => {
   });
 };
 
+const updateProvider = async (
+  id: string,
+  data: Omit<providerDTO, "userId">,
+) => {
+  return await prisma.providerProfile.update({
+    where: {
+      id,
+    },
+    data,
+  });
+};
+
 export const providerService = {
   getAllMeals,
   getMealsById,
   createProviders,
+  updateProvider,
   getAllProviders,
 };

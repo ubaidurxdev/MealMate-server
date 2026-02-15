@@ -37,13 +37,38 @@ const createProviders = async (
   next: NextFunction,
 ) => {
   try {
-    const userId = req.user?.id
-    const result = await providerService.createProviders(userId as string, req.body)
+    const userId = req.user?.id;
+    const result = await providerService.createProviders(
+      userId as string,
+      req.body,
+    );
     res.status(201).json({
-      success : true,
-      message : "Create new providers",
-      data : result
-    })
+      success: true,
+      message: "Create new providers",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateProvider = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const userId = req.user?.id;
+    if (userId === req.body.id) {
+      throw new Error("You are not owner of this provider");
+    }
+    const { id } = req.params;
+    const result = await providerService.updateProvider(id as string, req.body);
+    res.status(200).json({
+      success: true,
+      message: "Provider information updated",
+      data: result,
+    });
   } catch (error) {
     next(error);
   }
@@ -71,5 +96,6 @@ export const providerController = {
   getAllMeals,
   getMealsById,
   createProviders,
+  updateProvider,
   getAllProviders,
 };

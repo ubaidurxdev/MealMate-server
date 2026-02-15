@@ -6,5 +6,14 @@ const router = Router();
 router.get("/meals", providerController.getAllMeals);
 router.get("/meals/:id", providerController.getMealsById);
 router.get("/providers", providerController.getAllProviders);
-router.post("/providers",authentication(UserRole.Provider), providerController.createProviders);
+router.post(
+  "/providers",
+  authentication(UserRole.Provider),
+  providerController.createProviders,
+);
+router.put(
+  "/providers/:id",
+  authentication(UserRole.Provider),
+  providerController.updateProvider,
+);
 export const providerRouter: Router = router;
