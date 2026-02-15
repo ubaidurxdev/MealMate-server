@@ -1,6 +1,20 @@
 import { NextFunction, Request, Response } from "express";
 import { ordersService } from "./orders.service";
 
+
+const getAllOrders = async(req:Request,res:Response,next : NextFunction)=>{
+  try {
+    const result = await ordersService.getAllOrders()
+    res.status(200).json({
+      success : true,
+      message : "Fetched all orders",
+      data : result
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
 const createOrders = async (
   req: Request,
   res: Response,
@@ -22,4 +36,5 @@ const createOrders = async (
 
 export const ordersController = {
   createOrders,
+  getAllOrders
 };

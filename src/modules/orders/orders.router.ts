@@ -3,6 +3,7 @@ import { ordersController } from "./orders.controller";
 import { authentication, UserRole } from "../../middlewares/authentication";
 
 const router = Router();
+router.get("/", authentication(UserRole.Provider), ordersController.getAllOrders)
 router.post(
   "/",
   authentication(UserRole.Customer),
