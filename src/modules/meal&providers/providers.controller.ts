@@ -14,7 +14,11 @@ const getAllMeals = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const getAllProviders = async (req: Request, res: Response, next: NextFunction) => {
+const getAllProviders = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const result = await providerService.getAllProviders();
     res.status(200).json({
@@ -48,5 +52,5 @@ const getMealsById = async (
 export const providerController = {
   getAllMeals,
   getMealsById,
-  getAllProviders
+  getAllProviders,
 };
