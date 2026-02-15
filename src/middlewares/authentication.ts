@@ -52,7 +52,7 @@ export const authentication = (...roles: UserRole[]) => {
             "Forbidden! You don't have permission to access this resources!",
         });
       }
-      next()
+      next();
     } catch (error: any) {
       next(error);
     }

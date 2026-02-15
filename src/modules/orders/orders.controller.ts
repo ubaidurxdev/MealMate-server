@@ -8,6 +8,7 @@ const createOrders = async (
 ) => {
   try {
     const userId = req.user?.id as string;
+    console.log(userId);
     const result = await ordersService.createOrders(userId, req.body);
     res.status(201).json({
       success: true,
@@ -20,5 +21,5 @@ const createOrders = async (
 };
 
 export const ordersController = {
-    createOrders
-}
+  createOrders,
+};
