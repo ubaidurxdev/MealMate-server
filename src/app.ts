@@ -5,6 +5,7 @@ import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
 import cors from "cors";
 import { ordersRouter } from "./modules/orders/orders.router";
+import { adminRouter } from "./modules/admin/admin.router";
 const app: Application = express();
 
 app.use(
@@ -21,5 +22,6 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use("/api/provider", mealsRouter);
 app.use("/api/orders", ordersRouter);
+app.use("/api/admin", adminRouter);
 app.use(errorHandler);
 export default app;
