@@ -13,19 +13,22 @@ const getMealsById = async (id: string) => {
   });
 };
 
-const getAllProviders = async()=>{
-    return await prisma.providerProfile.findMany()
-}
+const getAllProviders = async () => {
+  return await prisma.providerProfile.findMany();
+};
 
-const createProviders = async(data : providerDTO)=>{
-    return await prisma.providerProfile.create({
-        data
-    })
-}
+const createProviders = async (id: string, data: providerDTO) => {
+  return await prisma.providerProfile.create({
+    data: {
+      ...data,
+      userId: id,
+    },
+  });
+};
 
 export const providerService = {
   getAllMeals,
   getMealsById,
   createProviders,
-  getAllProviders
+  getAllProviders,
 };

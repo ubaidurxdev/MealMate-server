@@ -31,6 +31,24 @@ const getAllProviders = async (
   }
 };
 
+const createProviders = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const userId = req.user?.id
+    const result = await providerService.createProviders(userId as string, req.body)
+    res.status(201).json({
+      success : true,
+      message : "Create new providers",
+      data : result
+    })
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getMealsById = async (
   req: Request,
   res: Response,
@@ -52,5 +70,6 @@ const getMealsById = async (
 export const providerController = {
   getAllMeals,
   getMealsById,
+  createProviders,
   getAllProviders,
 };
