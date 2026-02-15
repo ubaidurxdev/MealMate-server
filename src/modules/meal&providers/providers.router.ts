@@ -5,6 +5,7 @@ import { authentication, UserRole } from "../../middlewares/authentication";
 const router = Router();
 router.get("/meals", providerController.getAllMeals);
 router.get("/meals/:id", providerController.getMealsById);
+router.get("/providers/:id", providerController.getProviderById);
 router.get("/providers", providerController.getAllProviders);
 router.post(
   "/providers",

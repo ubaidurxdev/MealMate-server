@@ -92,10 +92,29 @@ const getMealsById = async (
   }
 };
 
+
+const getProviderById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { id } = req.params;
+  try {
+    const result = await providerService.getProviderById(id as string);
+    res.status(200).json({
+      success: true,
+      message: "Fetched provider profile by id",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export const providerController = {
   getAllMeals,
   getMealsById,
   createProviders,
   updateProvider,
   getAllProviders,
+  getProviderById
 };

@@ -38,10 +38,19 @@ const updateProvider = async (
   });
 };
 
+const getProviderById = async (id: string) => {
+  return await prisma.providerProfile.findUnique({
+    where: {
+      id,
+    },
+  });
+};
+
 export const providerService = {
   getAllMeals,
   getMealsById,
   createProviders,
   updateProvider,
+  getProviderById,
   getAllProviders,
 };
