@@ -1,4 +1,4 @@
-export interface mealInterface {
+export interface mealDTO {
   title: string;
   description: string;
   price: number;

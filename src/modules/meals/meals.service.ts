@@ -1,8 +1,8 @@
 import { OrderStatus } from "../../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
-import { mealInterface } from "../../types/meal.types";
+import { mealDTO } from "../../types/meal.types";
 
-const createMeals = async (data: mealInterface) => {
+const createMeals = async (data: mealDTO) => {
   return await prisma.meal.create({
     data,
   });
