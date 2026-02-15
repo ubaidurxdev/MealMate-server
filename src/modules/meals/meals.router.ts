@@ -9,7 +9,7 @@ router.post(
   authentication(UserRole.Provider),
   mealsController.createMeals,
 );
-router.patch(
+router.put(
   "/meals/:id",
   authentication(UserRole.Provider),
   mealsController.updateMeals,

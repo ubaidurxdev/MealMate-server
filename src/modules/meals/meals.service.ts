@@ -1,3 +1,4 @@
+import { OrderStatus } from "../../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 import { mealInterface } from "../../types/meal.types";
 
@@ -33,15 +34,25 @@ const updateMeals = async (
   });
 };
 
-const deleteMeals = async(id : string)=>{
+const deleteMeals = async (id: string) => {
   return await prisma.meal.delete({
-    where : {
-      id
-    }
-  })
-}
+    where: {
+      id,
+    },
+  });
+};
+
+const updateOrder = async (id: string, data: { status: OrderStatus }) => {
+  return await prisma.order.update({
+    where: {
+      id,
+    },
+    data,
+  });
+};
 export const mealsService = {
   createMeals,
   updateMeals,
-  deleteMeals
+  deleteMeals,
+  updateOrder
 };
