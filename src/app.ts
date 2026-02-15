@@ -8,6 +8,7 @@ import { ordersRouter } from "./modules/orders/orders.router";
 import { adminRouter } from "./modules/admin/admin.router";
 import { providerRouter } from "./modules/meal&providers/providers.router";
 import { usersRouter } from "./modules/users/users.router";
+import { addressRouter } from "./modules/address/address.router";
 const app: Application = express();
 
 app.use(
@@ -27,5 +28,6 @@ app.use("/api/orders", ordersRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api", providerRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/address", addressRouter);
 app.use(errorHandler);
 export default app;

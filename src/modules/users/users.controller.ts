@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { auth } from "../../lib/auth";
 import { usersService } from "./users.service";
 
 const getCurrentUser = async (
