@@ -42,7 +42,7 @@ const deleteMeals = async (id: string) => {
   });
 };
 
-const updateOrder = async (id: string, data: { status: OrderStatus }) => {
+const updateOrderStatus = async (id: string, data: { status: OrderStatus }) => {
   return await prisma.order.update({
     where: {
       id,
@@ -54,5 +54,5 @@ export const mealsService = {
   createMeals,
   updateMeals,
   deleteMeals,
-  updateOrder
+  updateOrderStatus
 };

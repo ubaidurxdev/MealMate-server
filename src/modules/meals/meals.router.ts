@@ -14,6 +14,7 @@ router.put(
   authentication(UserRole.Provider),
   mealsController.updateMeals,
 );
+router.patch("/orders/:id",authentication(UserRole.Provider), mealsController.updateOrderStatus)
 router.delete(
   "/meals/:id",
   authentication(UserRole.Provider),

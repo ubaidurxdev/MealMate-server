@@ -28,22 +28,40 @@ const updateMeals = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-
-const deleteMeals = async(req:Request,res:Response,next:NextFunction)=>{
+const updateOrderStatus = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    const {id} = req.params
-    const result = await mealsService.deleteMeals(id as string)
+    const { id } = req.params;
+    const result = await mealsService.updateOrderStatus(id as string, req.body);
     res.status(200).json({
       success : true,
-      message : "Meal is deleted",
+      message : "Order status is updated",
       data : result
     })
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
+
+const deleteMeals = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    const result = await mealsService.deleteMeals(id as string);
+    res.status(200).json({
+      success: true,
+      message: "Meal is deleted",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export const mealsController = {
   createMeals,
   updateMeals,
-  deleteMeals
+  updateOrderStatus,
+  deleteMeals,
 };
