@@ -15,6 +15,20 @@ const getAllOrders = async(req:Request,res:Response,next : NextFunction)=>{
   }
 }
 
+const getOrderById = async(req:Request,res:Response,next : NextFunction)=>{
+  const {id} = req.params
+  try {
+    const result = await ordersService.getOrderById(id as string)
+    res.status(200).json({
+      success : true,
+      message : "Fetched order by id",
+      data  :result
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
 const createOrders = async (
   req: Request,
   res: Response,
@@ -36,5 +50,6 @@ const createOrders = async (
 
 export const ordersController = {
   createOrders,
-  getAllOrders
+  getAllOrders,
+  getOrderById
 };

@@ -4,6 +4,7 @@ import { authentication, UserRole } from "../../middlewares/authentication";
 
 const router = Router();
 router.get("/", authentication(UserRole.Provider), ordersController.getAllOrders)
+router.get("/:id", authentication(UserRole.Provider), ordersController.getOrderById)
 router.post(
   "/",
   authentication(UserRole.Customer),
