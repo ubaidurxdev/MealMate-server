@@ -6,4 +6,6 @@ model OrderItem {
     order    Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
     price    Float
     quantity Int
+
+    @@unique([orderId, mealId])
 }
